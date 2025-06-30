@@ -1,0 +1,24 @@
+def encrypt(text, key):
+    result = ""
+    for char in text:
+        if char.isupper():
+            result += chr((ord(char) - ord('A') + key) % 26 + ord('A'))
+        elif char.islower():
+            result += chr((ord(char) - ord('a') + key) % 26 + ord('a'))
+        else:
+            result += char  # Non-alphabet characters stay the same
+    return result
+
+def decrypt(text, key):
+    return encrypt(text, -key)
+
+# Example usage
+message = input()
+key = 4
+
+encrypted = encrypt(message, key)
+decrypted = decrypt(encrypted, key)
+
+print("Original message:", message)
+print("Encrypted message:", encrypted)
+print("Decrypted message:", decrypted)
